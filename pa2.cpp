@@ -5,11 +5,11 @@
 
 
 #include <iostream>
-
+template <typename T>
 class Node {
 public:
 	Node* next;
-	int val;
+	T val;
 	Node();
 };
 
@@ -17,17 +17,17 @@ Node::Node() {
 	next = NULL;
 	val = -1;
 }
-
+template <typename T>
 class LinkedList {
 private:
 	Node* head;
-	int size;
+	T size;
 public:
 	LinkedList();
-	void append(int data);
-	void remove(int index, int data);
-	void add(int index, int data);
-	Node* getElementAt(int index);
+	void append(T data);
+	void remove(T index, T data);
+	void add(T index, T data);
+	Node* getElementAt(T index);
 	void print();
 };
 
@@ -36,8 +36,8 @@ LinkedList::LinkedList() {
 	size = 0;
 }
 
-Node* LinkedList::getElementAt(int index) {
-	if (index < 0 || index > size - 1 || head == NULL) {
+Node* LinkedList::getElementAt(size_t index) {
+	if (index > size - 1 || head == NULL) {
 		return NULL;
 	}
 	Node* current = head;
@@ -46,8 +46,8 @@ Node* LinkedList::getElementAt(int index) {
 	}
 	return current;
 }
-
-void LinkedList::append(int data) {
+template <typename T>
+void LinkedList::append(T data) {
 	Node* current = head;
 
 	if (head == NULL) {
@@ -76,9 +76,9 @@ void LinkedList::print() {
 	}
 	std::cout << "NULL" << std::endl;
 }
-
-void LinkedList::add(int index, int data) {
-	if (index<0 || index>size) {
+template <typename T>
+void LinkedList::add(size_t index, T data) {
+	if (index>size) {
 		return;
 	}
 	Node *dummy = new Node();
@@ -95,9 +95,9 @@ void LinkedList::add(int index, int data) {
 	head = dummy;
 	delete dummy;
 }
-
-void LinkedList::remove(int index, int data) {
-	if (index<0 || index >= size) {
+template <typename T>
+void LinkedList::remove(size_t index, T data) {
+	if (index >= size) {
 		return;
 	}
 	Node *dummy = new Node();
@@ -115,11 +115,11 @@ void LinkedList::remove(int index, int data) {
 }
 
 int main() {
-	LinkedList* linkedList = new LinkedList();
+	LinkedList<int>* linkedList = new LinkedList();
 	for (int i = 0; i < 5; i++) {
 		linkedList->append(i);
 	}
 	linkedList->print();
-	//henry sux lol 
+	//henry sux lol
 	return 0;
 }
