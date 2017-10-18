@@ -120,6 +120,6 @@ int main() {
 		linkedList->append(i);
 	}
 	linkedList->print();
+	//henry sux lol 
 	return 0;
 }
-
